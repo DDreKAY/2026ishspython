@@ -6,12 +6,11 @@ np_array02 = np.zeros((2,3))
 np_array03 = np.ones((3,3))
 #np_array04 = np.arange(0,11,2)
 np_array04 = np.arange(5)
-array05 = np.linspace(0,1,4)
+array05 = np.linspace(0,1,5)
 
-print(np_array01)
-print(np_array02)
-np_array02[1,1] = 9.0
-print(np_array02, type(np_array02))
-print(np_array03)
-print(np_array04)
-print(array05)
+# 배열 속성 (attribute)
+print(np_array01.shape) #배열 모양 (행, 열, (면))
+print(np_array02.shape)
+print(np_array03.ndim) # 차원수
+print(np_array04.dtype) #데이터 타입
+print(array05.size) #전체 원소 개수

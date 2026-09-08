@@ -14,6 +14,7 @@ def factorial_iterative(n):
     :param n: 입력 값
     :return: 팩토리얼 결과
     """
+    result = 1
     for i in range(1,n+1):
         result = result*i
     return result

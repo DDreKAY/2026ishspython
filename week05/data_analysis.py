@@ -4,10 +4,9 @@ import numpy as np
 import pandas as pd
 
 df = pd.read_csv(r"C:\2026ishspython\week05\data_analysis_adv\datasets\bike_rentals\bike_rentals.csv")
-df.info()
+df = df.set_index('datetime')
+#print(df.head(25))
 
-# select_dtypes 메서드를 사용하여 int형 변수만 선택
-df.select_dtypes(include='int')
-
-# select_dtypes 메서드를 사용하여 int형 변수만 제외하여 선택
-df.select_dtypes(exclude='int')
+print(df.filter(like='00:00:00', axis=0))
+print(df.filter(items=['weather','count']))
+print(df.filter(regex='w.e'))

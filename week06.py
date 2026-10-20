@@ -28,4 +28,7 @@ index = df[df['Rating'].isna()].tail().index
 print(df[df['Rating'].isna()].index)
 df['Rating'] = df['Rating'].fillna(df['Rating'].mean())
 
-print(df.loc[index, 'Rating', 'Total_Review'])
+s=pd.Series([1,np.nan,np.nan,2,np.nan,3])
+print(s)
+s=s.ffill()
+print(s)

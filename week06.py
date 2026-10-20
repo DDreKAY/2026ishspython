@@ -1,17 +1,28 @@
 import numpy as np
 import pandas as pd
+import seaborn as sns
 
-df = pd.read_csv('./datasets/bookings/bookings.csv')
+df = sns.load_dataset('penguins')
+'''print(df.head(5))
+print(df.tail(5))
+print(df.describe())
+df.info()'''
 
-df['Total_Review'] = df['Total_Review'].map(lambda x: str(x).replace('external','').strip())
-df['Total_Review'] = df['Total_Review'].map(lambda x: str(x).replace('review','').strip())
-df['Total_Review'] = df['Total_Review'].map(lambda x: str(x).replace(',',''))
-df['Total_Review'] = df['Total_Review'].astype('float')
-df['Rating']=df['Rating'].ffill()
-df['Total_Review']=df['Rating'].fillna(df['Rating'].mean())
+print(df.value_counts())
+bl = int(input('Enter bill length: '))
+species = input('Enter species: ')
+print(df.query('bill_length_mm >= @bl and species == @species'))
 
-quantile = [0, 0.2, 0.4, 0.6, 0.8, 1]
+# query 메서드 조건문의 문자열 메서드 사용
+df.query('island.str.contains("oe")', engine='python')
 
-for idx in quantile:
-    q = df['Total_Review'].quantile(idx, interpolation='higher')
-    print(f"quantile {idx} is {q}")
+df.query('species.str.endswith("e")', engine='python')
+
+'''# query 메서드를 이용한 부등호 필터링
+df.query('bill_length_mm > 55')
+
+# 위 코드와 동일한 결과를 얻음
+df[df['bill_length_mm'] > 55]
+
+# 위 코드와 동일한 결과를 얻음
+df.loc[df['bill_length_mm'] > 55]'''

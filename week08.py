@@ -1,9 +1,11 @@
 import pandas as pd
 
-s = pd.Series([0, 0, 1, 1, 0, 1, 1, 1, 1, 0])
-sc = s.cumsum()
-print(s.mul(sc))
-print(s.mul(sc).diff())
-print(s.mul(sc).diff().where(lambda x : x < 0)) # where: 조건문 빼고 다 NaN로
-print(s.mul(sc).diff().where(lambda x : x < 0).ffill()) # forward fill, bfill -> backward fill
-print(s.mul(sc).diff().where(lambda x : x < 0).ffill().add(sc, fill_value=0).max())
+df = pd.read_csv('./data_analysis_adv/datasets/APPL_price/APPL_price.csv')
+#print(df['Close'])
+
+s = df['Close']>175
+sc=s.cumsum()
+#print(df[s][['Close']])
+print(s.mul(sc).diff().where(lambda n: n < 0).ffill().add(sc,fill_value=0).max())
+
+print(df[s][['Date','Close']])

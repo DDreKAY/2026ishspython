@@ -31,3 +31,6 @@ plt.show()
 df=pd.read_csv("./data_analysis_adv/datasets/German_credit/German_credit.csv")
 ages=[10,20,30,40,50,60,70,80]
 print(pd.cut(df['Age'],bins=ages, right=False).reset_index().groupby('Age').size())
+
+# 적당히 수 나눠서 히스토그램 만들기
+print(pd.qcut(df['Age'], q=8,duplicates='drop').reset_index().groupby('Age').size())
